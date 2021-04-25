@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  max-width: 850px;
+  min-width: 700px;
+}
+
+.table {
+  -webkit-box-shadow: 0 0 10px #ccc;
+          box-shadow: 0 0 10px #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  padding: 1rem;
+}
+
+.table thead th {
+  color: #fff;
+  background-color: #41b883;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.table tbody tr:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
+.table tbody tr:hover {
+  background-color: #ecfff6;
+}
+
+.image {
+  width: 300px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.my-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000aa;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.my-modal form {
+  position: relative;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 500px;
+          flex: 0 1 500px;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+.my-modal .close {
+  font-size: 1.3rem;
+}
+
+.add-btn {
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  font-size: 1.3rem;
+}
+
+.image-load {
+  width: 100%;
+  height: 200px;
+  background-color: #f1f1f1;
+  font-size: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.row-select {
+  background-color: #ecfff6;
+}

@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  max-width: 850px;
+  min-width: 700px;
+}
+.table {
+  box-shadow: 0 0 10px #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  th,
+  td {
+    padding: 1rem;
+  }
+  thead th {
+    color: #fff;
+    background-color: #41b883;
+  }
+  td {
+    vertical-align: middle;
+  }
+  tbody tr:not(:last-child) {
+    border-bottom: 1px solid #ccc;
+  }
+  tbody tr:hover {
+    background-color: #ecfff6;
+  }
+}
+.image {
+  width: 300px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.my-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000aa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    position: relative;
+    flex: 0 1 500px;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+  .close {
+    font-size: 1.3rem;
+  }
+}
+
+.add-btn {
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  font-size: 1.3rem;
+}
+.image-load {
+  width: 100%;
+  height: 200px;
+  background-color: #f1f1f1;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row-select {
+  background-color: #ecfff6;
+}
