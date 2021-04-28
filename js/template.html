@@ -1,0 +1,16 @@
+<article class="my-card">
+  <div class="image">
+    <img :src="place.Picture1" :alt="place.Picdescribe1" />
+  </div>
+  <h2 class="mb-3 my-card-title">{{place.Name}}</h2>
+  <div class="my-card-info">
+    <p class="mb-1"><i class="bi bi-clock-fill me-2"></i>{{place.Opentime}}</p>
+    <address>
+      <p class="mb-1"><i class="bi bi-map-fill me-2"></i>{{place.Add}}</p>
+      <p class="mb-1"><i class="bi bi-telephone-fill me-2"></i>{{place.Tel}}</p>
+      <p class="mb-1" v-if="place.Ticketinfo">
+        <i class="bi bi-megaphone-fill text-warning me-2"></i>{{place.Ticketinfo}}
+      </p>
+    </address>
+  </div>
+</article>
