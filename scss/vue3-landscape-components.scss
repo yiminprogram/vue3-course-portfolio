@@ -97,10 +97,10 @@ html {
   }
   li {
     flex: 1;
-    padding: 1.5%;
+    padding: 1rem;
   }
   a {
-    padding: 30%;
+    padding: 1rem;
     color: $success;
     border: none;
     clip-path: circle();
@@ -113,5 +113,25 @@ html {
   .my-active {
     color: #fff;
     background-color: $success;
+  }
+}
+@media screen and (max-width: 992px) {
+  .nav-page {
+    li {
+      padding: 0.5rem;
+    }
+    a {
+      padding: 0.5rem;
+    }
+  }
+}
+@media screen and (max-width: 576px) {
+  .nav-page {
+    li {
+      padding: 0.1rem;
+    }
+    a {
+      padding: 0.1rem;
+    }
   }
 }

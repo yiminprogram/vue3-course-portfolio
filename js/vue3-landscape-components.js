@@ -21,12 +21,22 @@ const card = {
 };
 
 const pagination = {
-  props: ['total', 'page'],
+  props: ['total', 'page', 'pagination'],
+  computed: {
+    filterPage() {
+      const filterPage = [];
+      const idx = Math.floor((this.page - 1) / 10);
+      for (let i = 1; i <= this.pagination[idx]; i++) {
+        filterPage.push(i + idx * 10);
+      }
+      return filterPage;
+    },
+  },
   template: `
   <nav class="nav-page">
         <ul class="m-0 p-0">
           <li><a href="#app" @click="$emit('decrease')"><i class="bi bi-caret-left-fill"></i></a></li>
-          <li v-for="item in total">
+          <li v-for="item in filterPage">
             <a href="#app" :class="{'my-active':page===item}" @click="$emit('current',item)">{{item}}</a>
           </li>
           <li><a href="#app" @click="$emit('increase')"><i class="bi bi-caret-right-fill"></i></a></li>
@@ -43,6 +53,7 @@ const App = {
       data: [],
       list: [],
       page: 0,
+      pagination: [],
       total: 0,
     };
   },
@@ -64,6 +75,13 @@ const App = {
           }
           if (this.data.length >= 1) {
             this.page = 1;
+          }
+          const count = Math.floor(length / 10);
+          for (let i = 0; i < count; i++) {
+            this.pagination.push(10);
+            if (i + 1 === count) {
+              length % 10 !== 0 && this.pagination.push(length % 10);
+            }
           }
         })
         .catch(() => alert('錯誤！，請稍後再試'));
