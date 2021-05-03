@@ -21,25 +21,21 @@ const card = {
 };
 
 const pagination = {
-  props: ['total', 'page', 'pagination'],
+  props: ['props'],
   computed: {
     filterPage() {
-      const filterPage = [];
-      const idx = Math.floor((this.page - 1) / 10);
-      for (let i = 1; i <= this.pagination[idx]; i++) {
-        filterPage.push(i + idx * 10);
-      }
-      return filterPage;
+      const arr = this.props.data.filter((ele) => ele.pagination === this.props.pagination);
+      return arr.map((ele, idx) => ele.pagination * 10 + idx + 1);
     },
   },
   template: `
   <nav class="nav-page">
         <ul class="m-0 p-0">
-          <li><a href="#app" @click="$emit('decrease')"><i class="bi bi-caret-left-fill"></i></a></li>
+          <li><a href="#app" @click="$emit('decrease')" :class="{'my-disabled':props.page===1}"><i class="bi bi-caret-left-fill"></i></a></li>
           <li v-for="item in filterPage">
-            <a href="#app" :class="{'my-active':page===item}" @click="$emit('current',item)">{{item}}</a>
+            <a href="#app" :class="{'my-active':props.page===item}" @click="$emit('current',item)">{{item}}</a>
           </li>
-          <li><a href="#app" @click="$emit('increase')"><i class="bi bi-caret-right-fill"></i></a></li>
+          <li><a href="#app" @click="$emit('increase')" :class="{'my-disabled':props.page===props.data.length}"><i class="bi bi-caret-right-fill"></i></a></li>
         </ul>
       </nav>
   `,
@@ -53,8 +49,7 @@ const App = {
       data: [],
       list: [],
       page: 0,
-      pagination: [],
-      total: 0,
+      pagination: 0,
     };
   },
   components: {
@@ -68,26 +63,18 @@ const App = {
         .then((data) => {
           const place = data.data.XML_Head.Infos.Info;
           const length = Math.ceil(data.data.XML_Head.Infos.Info.length / 20);
-          this.total = length;
+          let pagination = 0;
           for (let i = 1; i <= length; i++) {
             const temp = place.splice(0, 20);
-            this.data.push({ page: i, data: temp });
-          }
-          if (this.data.length >= 1) {
-            this.page = 1;
-          }
-          const count = Math.floor(length / 10);
-          for (let i = 0; i < count; i++) {
-            this.pagination.push(10);
-            if (i + 1 === count) {
-              length % 10 !== 0 && this.pagination.push(length % 10);
-            }
+            this.data.push({ page: i, data: temp, pagination });
+            i === 1 && (this.page = 1);
+            i % 10 === 0 && pagination++;
           }
         })
         .catch(() => alert('錯誤！，請稍後再試'));
     },
     increasePage() {
-      if (this.page < this.total) {
+      if (this.page < this.data.length) {
         this.page++;
       }
     },
@@ -102,7 +89,9 @@ const App = {
   },
   watch: {
     page(page) {
-      this.list = this.data.find((ele) => ele.page === page).data;
+      const findData = this.data.find((ele) => ele.page === page);
+      this.list = findData.data;
+      this.pagination = findData.pagination;
     },
   },
   created() {

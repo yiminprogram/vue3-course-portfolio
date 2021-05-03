@@ -24,12 +24,10 @@
         </li>
       </ul>
       <pagination
-        v-on:decrease="decreasePage"
-        v-on:increase="increasePage"
-        v-on:current="currentPage"
-        :total="total"
-        :page="page"
-        :pagination="pagination"
+        @decrease="decreasePage"
+        @increase="increasePage"
+        @current="currentPage"
+        :props="{page,pagination,data}"
       ></pagination>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.2/vue.global.js"></script>
