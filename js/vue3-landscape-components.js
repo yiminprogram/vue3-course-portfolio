@@ -32,7 +32,7 @@ const pagination = {
   <nav class="nav-page">
         <ul class="m-0 p-0">
           <li><a href="#app" @click="$emit('decrease')" :class="{'my-disabled':props.page===1}"><i class="bi bi-caret-left-fill"></i></a></li>
-          <li v-for="item in filterPage">
+          <li v-for="item in filterPage" :key="item">
             <a href="#app" :class="{'my-active':props.page===item}" @click="$emit('current',item)">{{item}}</a>
           </li>
           <li><a href="#app" @click="$emit('increase')" :class="{'my-disabled':props.page===props.data.length}"><i class="bi bi-caret-right-fill"></i></a></li>
